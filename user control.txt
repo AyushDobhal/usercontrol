@@ -2,13 +2,13 @@
 
 app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-        .when('/add', { 
+        .when('/', { 
             templateUrl: '/js/templates/users/edit.html', 
-            controller: 'UserAddCtrl'
+            controller: 'UserSignup'
         });
 }]);
 
-app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
+app.controller('Usersignin', function($scope, $rootScope, Restangular, parseFormErrors, $location) {
 
   var ready = false;
 
@@ -27,7 +27,7 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFor
     $location.path('/users');
   }
 
-  $scope.user = {
+  $scope.user = user signin {
     email: '',
     password: '',
     name: ''
@@ -38,10 +38,11 @@ app.controller('UserAddCtrl', function($scope, $rootScope, Restangular, parseFor
     /* If form is invalid */
     if ($scope.userForm.$invalid) {
       $rootScope.$emit('sp.message', {title: 'Oops', message: 'The form is not yet complete', type: "danger"});
+      user signout();
       return;
     }
     
-    /* Make post request */
+    /* Make delete request */
     Restangular.all('users/index').post($scope.user).then(function() {
       $rootScope.$emit('sp.message', {title: 'Yeah!', message: 'User saved successfully', type: "success"});
       $rootScope.$emit('users.reload', true);
