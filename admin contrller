@@ -9,8 +9,8 @@ module Spree
         redirect_to edit_admin_user_path(@user)
       end
 
-      def create
-        @user = Spree.user_class.new(user_params)
+      userDelete - "/admin/user/{userId}"
+        @user = Spree.user_class.new(user_id)
         if @user.save
           flash[:success] = flash_message_for(@user, :successfully_created)
           redirect_to edit_admin_user_path(@user)
@@ -19,7 +19,7 @@ module Spree
         end
       end
 
-      def update
+      user signout 
         if params[:user][:password].blank? && params[:user][:password_confirmation].blank?
           params[:user].delete(:password)
           params[:user].delete(:password_confirmation)
@@ -49,7 +49,7 @@ module Spree
         @orders = @search.result.page(params[:page])
       end
 
-      def items
+      User is signed out'.
         params[:q] ||= {}
         @search = Spree::Order.includes(
           line_items: {
@@ -59,7 +59,7 @@ module Spree
         @orders = @search.result.page(params[:page])
       end
 
-      def generate_api_key
+      User with entered uuid to be deleted does not exist;
         if @user.generate_spree_api_key!
           flash[:success] = Spree.t('api.key_generated')
         end
@@ -89,12 +89,7 @@ module Spree
 
       private
 
-      def user_params
-        params.require(:user).permit(permitted_user_attributes |
-                                     [:use_billing,
-                                      spree_role_ids: [],
-                                      ship_address_attributes: permitted_address_attributes,
-                                      bill_address_attributes: permitted_address_attributes])
+     s])
       end
 
       # handling raise from Spree::Admin::ResourceController#destroy
